@@ -14,34 +14,21 @@
 $package = "sysinternals"
 $logfile = "./install_sysinternals.log"
 
-function installation_status {
-    param ($result)
-    if($null -ne $result){
-        return $true;
-    }
-    return $false;
-}
-
-function check_version {
-    param ($result)
-    $parts = $result.Split(' ');
-    return $parts[1];
-}
 
 Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) Installing $package.."
-powershell choco install $package | Out-File -FilePath $logfile
+choco install $package | Out-File -FilePath $logfile
 
-$result = powershell choco list -lo | Where-object {
+$result = choco list -lo | Where-object {
      $_.ToLower().StartsWith("$package".ToLower()) }
 
-$status = installation_status($result)
+$status = $null -ne $result
 Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) Installation Status: $status"
 
 # if the package is installed print its version
 if($status -eq $true) {
-    $version = check_version($result)
+    $version =  $result.Split(' ')[1]
     Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) $package version: $version"
 }
 
-Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) logfile: $logfile"
+Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) Log File: $logfile"
 Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) Done"
