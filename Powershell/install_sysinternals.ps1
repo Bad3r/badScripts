@@ -7,7 +7,6 @@
     https://docs.microsoft.com/en-us/sysinternals/
 .NOTES
     Chocolatey installations output will be stored in install_sysinternals.log
-    https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_redirection?view=powershell-7
 
 #>
 
