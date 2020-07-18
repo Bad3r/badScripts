@@ -14,7 +14,6 @@
 $package = "sysinternals"
 $logfile = "./install_sysinternals.log"
 
-
 Write-Output "[*] $('[{0:HH:mm:ss}]' -f (Get-Date)) Installing $package.."
 choco install $package | Out-File -FilePath $logfile
 
