@@ -1,10 +1,9 @@
 <#
 .SYNOPSIS
-    Perform an automated procmon capture, convert results to csv and process for ControlUp SBA
-.DESCRIPTION
+    Perform an automated procmon capture, convert results to csv and process 
     Long description of the script
 .EXAMPLE
-    PS C:\\> Get-WhatTimeIsItNow.ps1
+    PS C:\\> .ps1
     Explanation of what the example does
 .INPUTS
     arguments:
@@ -69,7 +68,7 @@ Function Find-UnicodeString
 
 if( ! ( Get-Process -Id $processId -ErrorAction SilentlyContinue ) )
 {
-    Throw "[!] $('[{0:HH:mm:ss}]' -f (Get-Date)) Process id $processId no longer exists"
+    Throw "[!] $('[{0:HH:mm:ss}]' -f (Get-Date)) - Process id $processId no longer exists"
 }
 
 [hashtable]$passedArguments = @{}
