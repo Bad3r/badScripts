@@ -8,7 +8,6 @@
     https://chocolatey.org/install
 .NOTES
     Requires Administrator privilege
-
 #>
 
 # Requires Administrator privilege
