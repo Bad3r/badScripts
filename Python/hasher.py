@@ -42,8 +42,10 @@ def tree(dir_path: Path, prefix: str=''):
                         md5.update(data)
                         sha1.update(data)
                         
-                        yield f"{prefix}{pointer}{path.name}, MD5={md5.hexdigest()}, SHA1={sha1.hexdigest()}"
+                        yield f"{md5.hexdigest()} {sha1.hexdigest()} {prefix}{pointer}{path.name}"
             except FileNotFoundError:
+                pass
+            except PermissionError:
                 pass
 
 def main():
