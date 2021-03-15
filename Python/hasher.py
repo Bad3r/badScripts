@@ -2,6 +2,7 @@ from pathlib import Path
 import sys
 import os
 import hashlib
+import argparse
 
 # prefix components:
 space =  '    '
@@ -42,11 +43,17 @@ def tree(dir_path: Path, prefix: str=''):
                         md5.update(data)
                         sha1.update(data)
                         
-                        yield f"{prefix}{pointer}{path.name}, MD5={md5.hexdigest()}, SHA1={sha1.hexdigest()}"
+                        yield f"MD5={md5.hexdigest()} |\
+                            SHA1={sha1.hexdigest()} |\
+                                {prefix}{pointer}{path.name}"
             except FileNotFoundError:
                 pass
 
 def main():
+    parser = argparse.ArgumentParser(description=
+                                     'Hash all files in a given directory \
+                                      recursively and print it in tree \
+                                      structure')
 
     for line in tree(Path("/bin")):
         print(line)
