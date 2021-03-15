@@ -48,6 +48,8 @@ def tree(dir_path: Path, prefix: str=''):
                                 {prefix}{pointer}{path.name}"
             except FileNotFoundError:
                 pass
+            except PermissionError:
+                pass
 
 def main():
     parser = argparse.ArgumentParser(description=
